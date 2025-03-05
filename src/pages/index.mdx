@@ -51,32 +51,31 @@ export const components = {pre: CodeBlock}
     {
       name: "Gi-Cheon Kang",
       url: "https://gicheonkang.com",
-      notes: ["1,2*"],
+      notes: ["*"],
     },
     {
       name: "Junghyun Kim",
       url:"https://jhkim-snu.github.io/",
-      notes: ["1,2*"],
+      notes: ["*"],
     },
     {
       name: "Kyuhwan Shim",
       url:"https://bi.snu.ac.kr/~khshim/",
-      notes: ["1,2"],
+      notes: [""],
     },
     {
       name: "Jun Ki Lee",
       url:"https://junkilee.github.io/",
-      notes: ["2†"],
+      notes: ["†"],
     },
     {
       name: "Byoung-Tak Zhang",
       url:"https://bi.snu.ac.kr/~btzhang/",
-      notes: ["1,2†"],
+      notes: ["†"],
     },
   ]}
   institute={[
-    { symbol: "¹", name: "IPAI, Seoul National University" },
-    { symbol: "²", name: "AI Institute, Seoul National University (AIIS)" },
+    { symbol: "", name: "Seoul National University" },
   ]} 
   notes={[
     {
@@ -168,41 +167,28 @@ export const components = {pre: CodeBlock}
   <div class="box" style="background-color: #f5f5f5; border-left: 4px solid #3273dc; padding: 10px; font-size: 0.5rem;">
       <p><strong>TL;DR</strong></p>
       <p>We explore how non-experts can teach robotic skills only through natural language supervision.</p>
-      <p>Our VLA model, CLIP-RT, learns end-to-end policies directly from this supervision.</p>
+      <p>We propose a VLA model that learns visuomotor policies directly from this supervision.</p>
   </div>
 </section>
 
 <HighlightedSection>
 ## Abstract
 
-This paper explores how non-experts can teach robots desired skills in their environments. We argue that natural language is an intuitive and accessible interface for robot learning. 
-To this end, we investigate two key aspects: (1) how non-experts collect robotic data using natural language supervision and (2) how pre-trained vision-language models learn end-to-end policies directly from this supervision. 
-We propose a data collection framework that collects robot demonstrations based on natural language supervision (e.g., ``move forward'') and further augments these demonstrations. 
-Next, we introduce a model that learns language-conditioned policies from natural language supervision called CLIP-RT. 
-Our model employs pre-trained CLIP models and learns to predict actions represented in language via contrastive imitation learning. 
-We first train CLIP-RT on large-scale robotic data and then enable it to learn desired skills using data collected from our framework.
-CLIP-RT shows strong capabilities in acquiring novel manipulation skills, outperforming the state-of-the-art model, OpenVLA (7B parameters), by 17\% in average success rates, while using 7x fewer parameters (1B). 
+Teaching robots desired skills in real-world environments remains challenging, especially for non-experts. A key bottleneck is that collecting robotic data often requires expertise or specialized hardware, limiting accessibility and scalability. We posit that natural language offers an intuitive and accessible interface for robot learning. To this end, we study two aspects: (1) enabling non-experts to collect robotic data through natural language supervision (e.g., "move the arm to the right") and (2) learning robotic policies directly from this supervision. Specifically, we introduce a data collection framework that collects robot demonstrations based on natural language supervision and further augments these demonstrations. We then present CLIP-RT, a vision-language-action (VLA) model that learns language-conditioned visuomotor policies from this supervision. CLIP-RT adapts the pretrained CLIP models and learns to predict language-based motion primitives via contrastive imitation learning. We train CLIP-RT on the Open X-Embodiment dataset and finetune it on in-domain data collected by our framework to learn diverse skills. CLIP-RT demonstrates strong capabilities in learning novel manipulation skills, outperforming the state-of-the-art model, OpenVLA (7B parameters), by 24% in average success rates, while using 7x fewer parameters (1B). We further observe that CLIP-RT shows significant improvements in few-shot generalization. Finally, through collaboration with humans or large pretrained models, CLIP-RT can further improve its generalization on challenging robotic tasks.
+
 
 </HighlightedSection>
 
 ## Motivation
 
-### Challenges in Language-Conditioned Robotic Policies
+Recent work has made significant progress toward generalist robotic policies using large-scale demonstration datasets. However, collecting these demonstrations often requires expertise and access to specialized hardware (e.g., teleoperation systems), limiting the accessibility and scalability of robot learning. How can non-experts train robotic policies without relying on specialized expertise or devices for data collection?  
 
-(1) Obtaining real-world robot data often relies on experts who can operate robots or teleoperation systems
+We humans already have an intuitive and accessible interface for robot learning: **natural language**. We explore an approach for training robotic skills solely through natural language: 
 
-(2) Struggle to rapidly expand a set of manipulation skills to perform a wide range of real-world tasks
+(1) Collect robotic data through natural language supervision
 
-### Research Question
+(2) A VLA model learns visuomotor policies directly from language supervision
 
-How non-experts can teach robots desired skills intuitively by using natural language as a interface?
-
-
-### Approach
-
-(1) Collect robotic data through natural language
-
-(2) Train using collected data
 
 ## Data Collection
 
