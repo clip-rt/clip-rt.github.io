@@ -38,6 +38,7 @@ import imit from "../assets/imit.png";
 import model_overview from "../assets/model_overview.png";
 import std from "../assets/std.png";
 import exp_results from "../assets/exp_results.png";
+import exp_results2 from "../assets/exp_results2.png";
 import figure1 from "../assets/figure1.png";
 
 import Splat from "../components/Splat.tsx"
@@ -183,10 +184,9 @@ Teaching robots desired skills in real-world environments remains challenging, e
 
 Recent work has made significant progress toward generalist robotic policies using large-scale demonstration datasets. However, collecting these demonstrations often requires expertise and access to specialized hardware (e.g., teleoperation systems), limiting the accessibility and scalability of robot learning. How can non-experts train robotic policies without relying on specialized expertise or devices for data collection?  
 
-We humans already have an intuitive and accessible interface for robot learning: **natural language**. We explore an approach for training robotic skills solely through natural language: 
+**We already have an intuitive and accessible interface for robot learning: natural language**. We explore an approach for training robotic skills solely through natural language: 
 
 (1) Collect robotic data through natural language supervision
-
 (2) A VLA model learns visuomotor policies directly from language supervision
 
 
@@ -231,16 +231,12 @@ We augment the demonstration data collected by humans based on a method called s
     <Image source={model_overview} altText="Overview of CLIP-RT." />
 </Figure>
 
-We propose a new VLA model, CLIP-RT which extends the idea of CLIP to robot learning to learn language-conditioned policies from natural language. Different from other VLA models, CLIP-RT learns to predict **robotic actions represented in natural language** (e.g., “Move arm left”) based on contrastive imitation learning.
+We propose a new VLA model, CLIP-RT which extends the idea of CLIP to robot learning to learn language-conditioned policies from natural language. Different from other VLA models, CLIP-RT learns to predict **robotic actions represented in natural language** (e.g., “Move arm left”) based on contrastive imitation learning. Furthermore, CLIP-RT is a **discriminative VLA model** that predicts the language action in the predefined list of actions.
 
 
 ### Contrastive Imitation Learning
 
 The goal of contrastive imitation learning is to optimize the pairwise similarity between language supervision and contextual information (i.e., the current scene and language instruction). We first train CLIP-RT on Open X-Embodiment (OXE) dataset and then finetune it on our collected in-domain data. Since the OXE dataset does not contain natural language supervision, we transform existing low-level end-effector actions into natural language supervision to train CLIP-RT.
-
-<Figure>
-  <Image source={imit} altText="imitation learning" style={{ maxWidth: "15%", height: "auto" }} />
-</Figure>
 
 
 ### Closed-Loop Robot Control
@@ -251,20 +247,33 @@ In each time step, CLIP-RT selects the language action class with the highest si
 ## Experimental Results 
 
 <Figure
-    caption="Experimental Results">
-    <Image source={exp_results} altText="Experimental Results" />
+    caption="Experimental results on 18 robot manipulation tasks">
+    <Image source={exp_results} altText="Experimental results on 18 robot manipulation tasks." />
 </Figure>
 
-We evaluate CLIP-RT on 9 Common tasks (Top) and 10 Novel tasks (Bottom); Arranged in ascending order based on average steps per episode.
+We evaluate CLIP-RT on 9 Common tasks (Top) and 9 Novel tasks (Bottom); Arranged in ascending order based on average steps per episode.
 
 
-### Key Takeaways
+### Main Results
 
-(1) CLIP-RT outperforms OpenVLA in average success rates by **3% on common tasks and 17% on novel manipulation tasks**. Note that we also finetune OpenVLA on the same in-domain data as CLIP-RT through low-rank adaptation (LoRA).
+(1) CLIP-RT outperforms OpenVLA in average success rates by **3% on common tasks and 24% on novel manipulation tasks**.
 
-(2) Vision-language models (VLMs) trained on Internet-scale data favor **action representations specified in language**, rather than existing low-level action encoding (v.s. CLIP-RT-Action)
+(2) **Natural language supervision** significantly increases performance (vs CLIP-RT-Action)
 
-(3) STD boosts the overall performance (v.s. CLIP-RT-Passive)
+(3) **STD** boosts the overall performance (vs CLIP-RT-Passive)
+
+
+### Why does CLIP-RT perform well on Novel tasks?  
+
+<Figure
+    caption="Comparison between multi-task and single-task policies">
+    <Image source={exp_results2} altText="Comparison between multi-task and single-task policies." />
+</Figure>
+
+CLIP-RT benefits more on multi-task policies (+11.1%) compared with OpenVLA (+3.3%). It indicates that CLIP-RT learns more generalizable and transferable representations across diverse robotic tasks. 
+
+
+
 
 ## Conclusion
 This paper presents CLIP-RT, enabling non-experts to teach robots new manipulation skills through natural language, making robot learning more accessible and scalable for everyday users.
