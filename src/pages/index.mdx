@@ -40,6 +40,7 @@ import std from "../assets/std.png";
 import exp_results from "../assets/exp_results.png";
 import exp_results2 from "../assets/exp_results2.png";
 import figure1 from "../assets/figure1.png";
+import tsne from "../assets/TSNE.png";
 
 import Splat from "../components/Splat.tsx"
 
@@ -190,7 +191,7 @@ In this work, we explore an approach for training robotic skills solely through 
 <section class>
   <div class="box" style="background-color: #f5f5f5; border-left: 4px solid #3273dc; padding: 10px; font-size: 0.5rem; margin-left: 0;">
       <p>Robotic data collection through natural language supervision</p>
-      <p>A VLA model that learns language-conditioned visuomotor skills directly from language supervision</p>
+      <p>A VLA model that learns visuomotor skills directly from natural language supervision</p>
   </div>
 </section>
 
@@ -254,7 +255,7 @@ In each time step, CLIP-RT selects the language action class with the highest si
 ## Experiments 
 
 <Figure
-    caption="Experimental results on 18 robot manipulation tasks">
+    caption="Main results on 18 robot manipulation tasks">
     <Image source={exp_results} altText="Experimental results on 18 robot manipulation tasks." />
 </Figure>
 
@@ -263,22 +264,31 @@ We evaluate CLIP-RT on 9 Common tasks (Top) and 9 Novel tasks (Bottom); Arranged
 <section class>
   <div class="box" style="background-color: #f5f5f5; border-left: 4px solid #3273dc; padding: 10px; font-size: 0.5rem; margin-left: 0;">
       <p><strong>Key Takeaways</strong></p>
-      <p>1. CLIP-RT outperforms OpenVLA in average success rates by **3% (Common tasks) and 24% (Novel tasks)**.</p>
+      <p>1. CLIP-RT outperforms OpenVLA in average success rates by **3% (Common) and 24% (Novel)**.</p>
       <p>2. **Natural language supervision** significantly increases performance (vs CLIP-RT-Action)</p>
       <p>3. **STD** boosts the overall performance (vs CLIP-RT-Passive)</p>
   </div>
 </section>
 
 
-### Why does CLIP-RT perform well on Novel tasks?  
+### Why does CLIP-RT perform well on Novel manipulation tasks?  
 
-<Figure style={{ width: '70%' }}
+<Figure
     caption="Comparison between multi-task and single-task policies">
     <Image source={exp_results2} altText="Comparison between multi-task and single-task policies."/>
 </Figure>
 
-CLIP-RT benefits more on multi-task policies (+11.1%) compared with OpenVLA (+3.3%). It indicates that CLIP-RT learns more generalizable and transferable representations across diverse robotic tasks. 
+CLIP-RT benefits more on multi-task policies (+11.1%) compared with OpenVLA (+3.3%). It indicates that CLIP-RT effectively learns the shared structure across diverse Novel tasks. In other words, learning more generalizable and transferable representations is one of the factors that CLIP-RT performs well on Novel tasks. 
 
+
+Another factor is attributed to the use of natural language supervision. As shown in the main results, CLIP-RT consistently outperforms a baseline model, CLIP-RT-Action that learns action tokens from scratch similar to existing VLA models. This observation implies that the use of natural language supervision enhances CLIP-RT’s generalization capabilities. To delve into this more deeply, we visualize how these models embed each motion primitives.    
+
+<Figure
+    caption="t-SNE visualization of 58 motion primitive embeddings from CLIP-RT (left) and CLIP-RT-Action (right)}.">
+    <Image source={tsne} altText="t-SNE visualization of 58 motion primitive embeddings from CLIP-RT (left) and CLIP-RT-Action (right)}."/>
+</Figure>
+
+The figure above shows the t-SNE projection of 58 motion primitives for CLIP-RT (left) and CLIP-RT-Action (right). We categorize motion primitives into 16 groups based on the type of displacement. As shown in the Figure, CLIP-RT tends to embed the same groups of motions closer, while CLIP-RT-Action does not show clear structures in its embeddings. It implies that natural language supervision enables CLIP-RT to leverage inherent language priors in the pretrained vision-language model (i.e., CLIP), facilitating the learning of more structured and semantically meaningful action representations. We conjecture that these language priors improve the generalization capabilities of CLIP-RT. 
 
 
 
