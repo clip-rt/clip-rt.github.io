@@ -25,16 +25,10 @@
 }
 
 .container {
+    width: 50vw;
     max-width: 1200px; /* 데스크탑에서 최대 너비 설정 */
     margin: 0 auto; /* 가운데 정렬 */
     padding: 0 20px;
-}
-
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1200px; 
-        padding: 0 20px; 
-    }
 }
 
 @media (max-width: 768px) {
