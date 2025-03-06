@@ -190,7 +190,7 @@ In this work, we explore an approach for training robotic skills solely through 
 <section class>
   <div class="box" style="background-color: #f5f5f5; border-left: 4px solid #3273dc; padding: 10px; font-size: 0.5rem; margin-left: 0;">
       <p>Robotic data collection through natural language supervision</p>
-      <p>A VLA model learns visuomotor policies directly from language supervision</p>
+      <p>A VLA model that learns language-conditioned visuomotor skills directly from language supervision</p>
   </div>
 </section>
 
@@ -208,8 +208,8 @@ We propose a language-based teleoperation method which leverages the in-context 
 
 <section class>
   <div class="box" style="background-color: #f5f5f5; border-left: 4px solid #3273dc; padding: 10px; font-size: 0.5rem; margin-left: 0;">
-      <p>1. Provide initial **language instruction** (e.g., “Pour the dog food”)</p>
-      <p>2. Provide **natural language supervisions** in each state to complete the instruction (e.g., “Move left”)</p>
+      <p>1. Provide initial **language instruction** (e.g., “Pour the dog food into the bowl”)</p>
+      <p>2. Provide **natural language supervision** in each state to complete the instruction</p>
       <p>3. LLM translates the language supervision into the **end-effector action** based on the text prompt </p>
       <p>4. Repeat step 2 and step 3 until the episode ends</p>
   </div>
@@ -262,18 +262,19 @@ We evaluate CLIP-RT on 9 Common tasks (Top) and 9 Novel tasks (Bottom); Arranged
 
 <section class>
   <div class="box" style="background-color: #f5f5f5; border-left: 4px solid #3273dc; padding: 10px; font-size: 0.5rem; margin-left: 0;">
-      <p>CLIP-RT outperforms OpenVLA in average success rates by **3% on common tasks and 24% on novel tasks**.</p>
-      <p>**Natural language supervision** significantly increases performance (vs CLIP-RT-Action)</p>
-      <p>**STD** boosts the overall performance (vs CLIP-RT-Passive)</p>
+      <p><strong>Key Takeaways</strong></p>
+      <p>1. CLIP-RT outperforms OpenVLA in average success rates by **3% (Common tasks) and 24% (Novel tasks)**.</p>
+      <p>2. **Natural language supervision** significantly increases performance (vs CLIP-RT-Action)</p>
+      <p>3. **STD** boosts the overall performance (vs CLIP-RT-Passive)</p>
   </div>
 </section>
 
 
 ### Why does CLIP-RT perform well on Novel tasks?  
 
-<Figure
+<Figure style={{ width: '70%' }}
     caption="Comparison between multi-task and single-task policies">
-    <Image source={exp_results2} altText="Comparison between multi-task and single-task policies." style={{ width: '70%', height: 'auto' }} />
+    <Image source={exp_results2} altText="Comparison between multi-task and single-task policies."/>
 </Figure>
 
 CLIP-RT benefits more on multi-task policies (+11.1%) compared with OpenVLA (+3.3%). It indicates that CLIP-RT learns more generalizable and transferable representations across diverse robotic tasks. 
