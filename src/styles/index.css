@@ -25,7 +25,7 @@
 }
 
 .container {
-    max-width: 1200px; /* 데스크탑에서 최대 너비 설정 */
+    max-width: 1080px; /* 데스크탑에서 최대 너비 설정 */
     margin: 0 auto; /* 가운데 정렬 */
     padding: 0 20px;
 }
