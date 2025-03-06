@@ -238,7 +238,7 @@ We augment the demonstration data collected by humans based on a method called s
     <Image source={model_overview} altText="Overview of CLIP-RT." />
 </Figure>
 
-We propose a new VLA model, CLIP-RT which extends the idea of CLIP to robot learning to learn language-conditioned policies from natural language. Different from other VLA models, CLIP-RT learns to predict **robotic actions represented in natural language** (e.g., “Move arm left”) based on contrastive imitation learning. Furthermore, CLIP-RT is a **discriminative VLA model** that predicts the language action in the predefined list of actions.
+We propose a new VLA model, CLIP-RT which extends the idea of CLIP to robot learning to learn language-conditioned policies from natural language. Different from other VLA models, CLIP-RT learns to predict **robotic actions represented in natural language** (e.g., “Move arm left”) based on contrastive imitation learning. Furthermore, CLIP-RT is a **discriminative VLA model** that predicts the language-based motion primitive in the predefined list of motion primitives.
 
 
 ### Contrastive Imitation Learning
@@ -248,7 +248,7 @@ The goal of contrastive imitation learning is to optimize the pairwise similarit
 
 ### Closed-Loop Robot Control
 
-In each time step, CLIP-RT selects the language action class with the highest similarity score. The selected action class is translated into the lower-level end-effector commands based on a pre-defined lookup tabl. Since CLIP-RT is a discriminative model, CLIP-RT can predict action in a single forward pass without autoregressive decoding. This model requires 7GB of GPU memory and runs at 16Hz (one H100 GPU using float32 precision) and 8Hz (one NVIDIA RTX 3090 GPU using float32 precision) without applying any speed-up tricks, such as model quantization and compilation.  
+In each time step, CLIP-RT selects the language-based motion primitive with the highest similarity score. The selected motion primitive is translated into the lower-level end-effector commands based on a pre-defined lookup table. Since CLIP-RT is a discriminative model, CLIP-RT can predict action in a single forward pass without autoregressive decoding. This model requires 7GB of GPU memory and runs at 16Hz (one H100 GPU using float32 precision) and 8Hz (one NVIDIA RTX 3090 GPU using float32 precision) without applying any speed-up tricks, such as model quantization and compilation.  
 
 
 
