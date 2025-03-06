@@ -186,9 +186,9 @@ Recent work has made significant progress toward generalist robotic policies usi
 
 **We already have an intuitive and accessible interface for robot learning: natural language**. We explore an approach for training robotic skills solely through natural language: 
 
-(1) Collect robotic data through natural language supervision
-(2) A VLA model learns visuomotor policies directly from language supervision
-
+* Collect robotic data through natural language supervision
+* A VLA model learns visuomotor policies directly from language supervision
+*****
 
 ## Data Collection
 
@@ -201,13 +201,10 @@ Recent work has made significant progress toward generalist robotic policies usi
 
 We propose a language-based teleoperation method which leverages the in-context learning capabilities of large language models (LLMs). We collect **10 episodes** for each skill through language-based teleoperation
 
-(1) Provide initial **language instruction** (e.g., “Pour the dog food”)
-
-(2) Provide **natural language supervisions** in specific states to complete the instruction (e.g., “Move left a lot”)
-
-(3) LLM translates the natural language supervision into the **low-level end-effector command** based on a detailed text prompt
-
-(4) Repeat step 2 and step 3 until the episode ends
+1. Provide initial **language instruction** (e.g., “Pour the dog food”)
+2. Provide **natural language supervisions** in specific states to complete the instruction (e.g., “Move left a lot”)
+3. LLM translates the natural language supervision into the **low-level end-effector command** based on a detailed text prompt
+4. Repeat step 2 and step 3 until the episode ends
 
 
 ### Stochastic Trajectory Diversification (STD)
@@ -218,11 +215,9 @@ We propose a language-based teleoperation method which leverages the in-context 
 </Figure>
 
 We augment the demonstration data collected by humans based on a method called stochastic trajectory diversification (STD), consisting of two parts:
-
-(1) **The Diversification phase** diversifies the expert trajectory into multiple alternative trajectories
-
-(2) **The Recovery phase** intentionally deviates from the original trajectory and then executes a recovery action to return to the original path. Recovery action is utilized in training
-
+* **The Diversification phase** diversifies the expert trajectory into multiple alternative trajectories
+* **The Recovery phase** intentionally deviates from the original trajectory and then executes a recovery action to return to the original path. Recovery action is utilized in training
+*****
 
 ## CLIP-RT Model 
 
@@ -242,9 +237,10 @@ The goal of contrastive imitation learning is to optimize the pairwise similarit
 ### Closed-Loop Robot Control
 
 In each time step, CLIP-RT selects the language action class with the highest similarity score. The selected action class is translated into the lower-level end-effector commands based on a pre-defined lookup tabl. Since CLIP-RT is a discriminative model, CLIP-RT can predict action in a single forward pass without autoregressive decoding. This model requires 7GB of GPU memory and runs at 16Hz (one H100 GPU using float32 precision) and 8Hz (one NVIDIA RTX 3090 GPU using float32 precision) without applying any speed-up tricks, such as model quantization and compilation.  
+*****
 
 
-## Experimental Results 
+## Experiments 
 
 <Figure
     caption="Experimental results on 18 robot manipulation tasks">
@@ -253,21 +249,16 @@ In each time step, CLIP-RT selects the language action class with the highest si
 
 We evaluate CLIP-RT on 9 Common tasks (Top) and 9 Novel tasks (Bottom); Arranged in ascending order based on average steps per episode.
 
-
-### Main Results
-
-(1) CLIP-RT outperforms OpenVLA in average success rates by **3% on common tasks and 24% on novel manipulation tasks**.
-
-(2) **Natural language supervision** significantly increases performance (vs CLIP-RT-Action)
-
-(3) **STD** boosts the overall performance (vs CLIP-RT-Passive)
+* CLIP-RT outperforms OpenVLA in average success rates by **3% on common tasks and 24% on novel manipulation tasks**.
+* **Natural language supervision** significantly increases performance (vs CLIP-RT-Action)
+* **STD** boosts the overall performance (vs CLIP-RT-Passive)
 
 
 ### Why does CLIP-RT perform well on Novel tasks?  
 
 <Figure
     caption="Comparison between multi-task and single-task policies">
-    <Image source={exp_results2} altText="Comparison between multi-task and single-task policies." />
+    <Image source={exp_results2} altText="Comparison between multi-task and single-task policies." style={{ width: '70%', height: 'auto' }} />
 </Figure>
 
 CLIP-RT benefits more on multi-task policies (+11.1%) compared with OpenVLA (+3.3%). It indicates that CLIP-RT learns more generalizable and transferable representations across diverse robotic tasks. 
