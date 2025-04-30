@@ -41,6 +41,7 @@ import exp_results from "../assets/exp_results.png";
 import exp_results2 from "../assets/exp_results2.png";
 import figure1 from "../assets/figure1.png";
 import tsne from "../assets/TSNE.png";
+import libero from "../assets/libero.png";
 
 import Splat from "../components/Splat.tsx"
 
@@ -78,7 +79,8 @@ export const components = {pre: CodeBlock}
   ]}
   institute={[
     { symbol: "", name: "Seoul National University" },
-  ]} 
+  ]}
+  conference="Robotics: Science and Systems (RSS), 2025"
   notes={[
     {
       symbol: "*",
@@ -252,7 +254,7 @@ In each time step, CLIP-RT selects the language-based motion primitive with the 
 
 
 
-## Experiments 
+## Real-World Experiments 
 
 <Figure
     caption="Main results on 18 robot manipulation tasks">
@@ -284,8 +286,8 @@ Where does the significant performance gap between CLIP-RT and OpenVLA on Novel 
 Another factor is attributed to the use of natural language supervision. As shown in the main results, CLIP-RT consistently outperforms a baseline model, CLIP-RT-Action that learns action tokens from scratch similar to existing VLA models. This observation implies that the use of natural language supervision enhances CLIP-RT’s generalization capabilities. To delve into this more deeply, we visualize how these models embed each motion primitives.    
 
 <Figure
-    caption="t-SNE visualization of 58 motion primitive embeddings from CLIP-RT (left) and CLIP-RT-Action (right)}.">
-    <Image source={tsne} altText="t-SNE visualization of 58 motion primitive embeddings from CLIP-RT (left) and CLIP-RT-Action (right)}."/>
+    caption="t-SNE visualization of 58 motion primitive embeddings from CLIP-RT (left) and CLIP-RT-Action (right).">
+    <Image source={tsne} altText="t-SNE visualization of 58 motion primitive embeddings from CLIP-RT (left) and CLIP-RT-Action (right)."/>
 </Figure>
 
 The figure above shows the t-SNE projection of 58 motion primitives for CLIP-RT (left) and CLIP-RT-Action (right). We categorize motion primitives into 16 groups based on the type of displacement. As shown in the Figure, CLIP-RT tends to embed the same groups of motions closer, while CLIP-RT-Action does not show clear structures in its embeddings. It implies that natural language supervision enables CLIP-RT to leverage inherent language priors in the pretrained vision-language model (i.e., CLIP), facilitating the learning of more structured and semantically meaningful action representations. We conjecture that these language priors improve the generalization capabilities of CLIP-RT. 
@@ -294,11 +296,34 @@ The figure above shows the t-SNE projection of 58 motion primitives for CLIP-RT 
 Our paper describes other interesting results, such as (1) collaborating CLIP-RT with humans or large pretrained models and (2) few-shot generalization capabilities.  
    
 
+## LIBERO Experiments
+
+While our primary focus is on training real-world robots through language-guided data collection, we further evaluate CLIP-RT on the LIBERO simulation benchmark to study the following questions:
+
+<section class>
+  <div class="box" style="background-color: #f5f5f5; border-left: 4px solid #3273dc; padding: 10px; font-size: 0.5rem; margin-left: 0;">
+      <p>**Generality**: Is CLIP-RT applicable to environments with offline, human-teleoperated demonstration data?</p>
+      <p>**Performance**: Does CLIP-RT remain effective in a controlled simulation setting?</p>
+  </div>
+</section>
+
+To make CLIP-RT compatible with the LIBERO simulation benchmark, we adapt CLIP-RT to predict continuous actions. Please check our paper if you want to check the details of the adaptation.
+
+<Figure
+    caption="LIBERO task performance and inference efficiency results.">
+    <Image source={libero} altText="LIBERO task performance and inference efficiency results."/>
+</Figure>
+
+The recent state-of-the-art VLA model, OpenVLA-OFT, achieves the highest average success rate of 95.3%. However, CLIP-RT+ shows comparable performance across all task suites with an average score of 92.8%, while using 6x fewer parameters (1.3B) compared with OpenVLA-OFT (7.7B). Surprisingly, CLIP-RT+ attains a near perfect success rate (99.2%) on the LIBERO-Object task suite, indicating strong generalization to unseen objects in simulation environments.
+
+Furthermore, we measure the throughput and latency on an NVIDIA A100 GPU. CLIP-RT+ achieves 39X improved throughput (4.2Hz to 163.8Hz) compared with OpenVLA based on its lightweight design and the action chunking technique. When compared to OpenVLA-OFT using the same action chunk size of 8, CLIP-RT+ improves both throughput and latency by approximately 49%.
+
+
 ## Conclusion
-This paper presents CLIP-RT, enabling non-experts to teach robots new manipulation skills through natural language, making robot learning more accessible and scalable for everyday users.
+This paper presents CLIP-RT, enabling non-experts to teach robots new manipulation skills through natural language, making robot learning more accessible and scalable for everyday users. We demonstrated the effectiveness of CLIP-RT on both real-world and simulated environments. 
 
 
-## BibTeX citation
+## BibTeX Citation
 
 ```bibtex
 @article{kang2024cliprt,
