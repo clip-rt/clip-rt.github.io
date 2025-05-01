@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/Layout.astro
-title: "CLIP-RT : Learning Language-Conditioned Robotic Policies from Natural Language Supervision"
+title: "CLIP-RT: Learning Language-Conditioned Robotic Policies from Natural Language Supervision"
 description: Learning Language-Conditioned Robotic Policies from Natural Language Supervision
 favicon: /favicon.svg
 thumbnail: screenshot.png
@@ -54,43 +54,34 @@ export const components = {pre: CodeBlock}
     {
       name: "Gi-Cheon Kang",
       url: "https://gicheonkang.com",
-      notes: ["*"],
+      notes: ["1*"],
     },
     {
       name: "Junghyun Kim",
       url:"https://jhkim-snu.github.io/",
-      notes: ["*"],
+      notes: ["1*"],
     },
     {
       name: "Kyuhwan Shim",
       url:"https://underthelights.github.io/",
-      notes: [""],
+      notes: ["1"],
     },
     {
       name: "Jun Ki Lee",
       url:"https://junkilee.github.io/",
-      notes: ["†"],
+      notes: ["1†"],
     },
     {
       name: "Byoung-Tak Zhang",
       url:"https://bi.snu.ac.kr/~btzhang/",
-      notes: ["†"],
+      notes: ["1,2†"],
     },
   ]}
   institute={[
-    { symbol: "", name: "Seoul National University" },
+    { symbol: "1", name: "Seoul National University" },
+    { symbol: "2", name: "Tommoro Robotics" },
   ]}
   conference="Robotics: Science and Systems (RSS), 2025"
-  notes={[
-    {
-      symbol: "*",
-      text: "Equal Contribution",
-    },
-    {
-      symbol: "†",
-      text: "Corresponding Authors",
-    },
-  ]}
   links={[
     {
       name: "Paper",
@@ -178,7 +169,7 @@ export const components = {pre: CodeBlock}
 <HighlightedSection>
 ## Abstract
 
-Teaching robots desired skills in real-world environments remains challenging, especially for non-experts. A key bottleneck is that collecting robotic data often requires expertise or specialized hardware, limiting accessibility and scalability. We posit that natural language offers an intuitive and accessible interface for robot learning. To this end, we study two aspects: (1) enabling non-experts to collect robotic data through natural language supervision (e.g., "move the arm to the right") and (2) learning robotic policies directly from this supervision. Specifically, we introduce a data collection framework that collects robot demonstrations based on natural language supervision and further augments these demonstrations. We then present CLIP-RT, a vision-language-action (VLA) model that learns language-conditioned visuomotor policies from this supervision. CLIP-RT adapts the pretrained CLIP models and learns to predict language-based motion primitives via contrastive imitation learning. We train CLIP-RT on the Open X-Embodiment dataset and finetune it on in-domain data collected by our framework to learn diverse skills. CLIP-RT demonstrates strong capabilities in learning novel manipulation skills, outperforming the state-of-the-art model, OpenVLA (7B parameters), by 24% in average success rates, while using 7x fewer parameters (1B). We further observe that CLIP-RT shows significant improvements in few-shot generalization. Finally, through collaboration with humans or large pretrained models, CLIP-RT can further improve its generalization on challenging robotic tasks.
+Teaching robots desired skills in real-world environments remains challenging, especially for non-experts. A key bottleneck is that collecting robotic data often requires expertise or specialized hardware, limiting accessibility and scalability. We posit that natural language offers an intuitive and accessible interface for robot learning. To this end, we study two aspects: (1) enabling non-experts to collect robotic data through natural language supervision (e.g., "move the arm to the right") and (2) training robot policies directly from this supervision. Specifically, we introduce a data collection framework that collects robot demonstrations based on natural language supervision and further augments these demonstrations. We then present CLIP-RT, a new vision-language-action (VLA) model that learns language-conditioned visuomotor policies from this supervision. CLIP-RT adapts the pretrained CLIP model and learns to predict language-based motion primitives via contrastive imitation learning. We train CLIP-RT on the Open X-Embodiment dataset and finetune it on in-domain data collected by our framework. In real-world evaluations, CLIP-RT demonstrates strong capabilities in learning novel manipulation skills, outperforming OpenVLA (7B parameters) by 24% in average success rates, while using 7x fewer parameters (1B). We further assess CLIP-RT's capabilities in few-shot generalization and collaborative scenarios involving large pretrained models or humans. In simulated environments, CLIP-RT also yields strong performance, achieving a 92.8% average success rate on the LIBERO benchmark with an inference throughput of 163 Hz.
 
 
 </HighlightedSection>
