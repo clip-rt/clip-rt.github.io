@@ -21,7 +21,7 @@ const { authors } = Astro.props;
             author.name
           )}
           {author.notes && (
-            <sup class="text-xs">
+            <sup class="text-sm">
               {author.notes.map(
                 (note, index, array) =>
                   note + (index < array.length - 1 ? "," : "")
