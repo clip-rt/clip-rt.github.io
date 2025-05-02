@@ -30,9 +30,6 @@
     padding: 0 20px;
 }
 
-.figure-small {
-  max-width: 300px;
-}
 
 @media (max-width: 768px) {
     .container {
