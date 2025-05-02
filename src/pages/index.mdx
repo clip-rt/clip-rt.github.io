@@ -268,7 +268,7 @@ We evaluate CLIP-RT on 9 Common tasks (Top) and 9 Novel tasks (Bottom); Arranged
 
 <Figure
     caption="Comparison between multi-task and single-task policies">
-    <Image source={exp_results2} altText="Comparison between multi-task and single-task policies." style={{ width: '300px', height: 'auto' }}/>
+    <Image source={exp_results2} altText="Comparison between multi-task and single-task policies." class="w-auto max-w-full h-auto"/>
 </Figure>
 
 Where does the significant performance gap between CLIP-RT and OpenVLA on Novel tasks come from? One of our hypotheses is that CLIP-RT effectively learns the shared structure across diverse robotic tasks by utilizing language-based motion primitives as basic building blocks. To verify this, we train a single-task policy for each Novel task and evaluate the performance of each model. OpenVLA-Single and CLIP-RT-Single denote the performance of single-task policies for each model. CLIP-RT benefits more on multi-task policies (+11.1%) compared with OpenVLA (+3.3%). It indicates that CLIP-RT benefits more from shared knowledge across diverse robotic tasks. In other words, learning more generalizable and transferable representations is one of the factors that CLIP-RT performs well on Novel tasks. 
