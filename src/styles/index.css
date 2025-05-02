@@ -30,6 +30,10 @@
     padding: 0 20px;
 }
 
+.figure-small {
+  max-width: 300px;
+}
+
 @media (max-width: 768px) {
     .container {
         max-width: 100%; /* 모바일에서는 전체 너비로 설정 */
