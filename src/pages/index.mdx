@@ -2,11 +2,12 @@
 layout: ../layouts/Layout.astro
 title: "CLIP-RT: Learning Language-Conditioned Robotic Policies from Natural Language Supervision"
 description: Learning Language-Conditioned Robotic Policies from Natural Language Supervision
-favicon: /favicon.svg
+favicon: favicon.svg
 thumbnail: screenshot.png
 ---
 
 import "../styles/index.css";
+import Links from '../components/Links.astro';
 
 import Layout from "../layouts/Layout.astro";
 
@@ -39,7 +40,8 @@ import model_overview from "../assets/model_overview.png";
 import std from "../assets/std.png";
 import exp_results from "../assets/exp_results.png";
 import exp_results2 from "../assets/exp_results2.png";
-import figure1 from "../assets/figure1.png";
+import figure1 from "../assets/01_teaser.png";
+
 import tsne from "../assets/TSNE.png";
 import libero from "../assets/libero.png";
 
@@ -69,7 +71,7 @@ export const components = {pre: CodeBlock}
     {
       name: "Jun Ki Lee",
       url:"https://junkilee.github.io/",
-      notes: ["1†"],
+      notes: ["1,2†"],
     },
     {
       name: "Byoung-Tak Zhang",
@@ -78,8 +80,8 @@ export const components = {pre: CodeBlock}
     },
   ]}
   institute={[
-    { symbol: "1", name: "Seoul National University" },
-    { symbol: "2", name: "Tommoro Robotics" },
+    { symbol: "1", name: "Seoul National University", logo:"src/assets/logo_snu.png"},
+    { symbol: "2", name: "Tommoro Robotics", logo:"src/assets/logo_tommoro.png" },
   ]}
   conference="Robotics: Science and Systems (RSS), 2025"
   links={[
@@ -90,9 +92,15 @@ export const components = {pre: CodeBlock}
     },
     {
       name: "Code",
-      url: "https://github.com/gicheonkang/clip-rt",
+      url: "https://github.com/clip-rt/clip-rt",
       icon: "mdi:github",
     },
+    {
+      name: "Models",
+      url: "https://huggingface.co/clip-rt",
+      iconComponent: `<img src="src/assets/huggingface.svg" alt="Huggingface" width="24" style="vertical-align: middle;" />`,
+    }
+
   ]}
 />
 <section class="hero is-light is-small">
@@ -181,10 +189,15 @@ Recent work has made significant progress toward generalist robotic policies usi
 **We already have an intuitive and accessible interface for robot learning: natural language**.
 In this work, we explore an approach for training robotic skills solely through natural language. It includes:  
 
-<section class>
-  <div class="box" style="background-color: #f5f5f5; border-left: 4px solid #3273dc; padding: 10px; font-size: 0.5rem; margin-left: 0;">
-      <p>Robotic data collection through natural language supervision</p>
-      <p>A VLA model that learns visuomotor skills directly from natural language supervision</p>
+<section class="my-6">
+  <div class="border-l-4 border-blue-500 bg-zinc-50 p-5 rounded-md shadow-sm">
+    <p class="font-bold text-zinc-800 mb-2">TL;DR</p>
+    <p class="text-zinc-700">
+      We explore how non-experts can teach robotic skills only through natural language supervision.
+    </p>
+    <p class="text-zinc-700">
+      We propose a VLA model that learns visuomotor policies directly from this supervision.
+    </p>
   </div>
 </section>
 
@@ -194,7 +207,7 @@ In this work, we explore an approach for training robotic skills solely through 
 ### Language-Based Teleoperation
 
 <Figure
-    caption="Language-based teleoperation">
+    caption="Overview of language-guided teleoperation.">
     <Image source={figure1} altText="Research Question" />
 </Figure>
 
@@ -326,4 +339,4 @@ This paper presents CLIP-RT, enabling non-experts to teach robots new manipulati
 ```
 
 ## Acknowledgements
-This work was partly supported by the IITP (RS-2021-II212068-AIHub/10%, RS-2021-II211343-GSAI/20%, 2022-0-00951-LBA/20%, 2022-0-00953-PICA/20%) and NRF (RS-2024-00353991/20%, RS-2023-00274280/10%) grant funded by the Korean government.
+This work was partly supported by the IITP (RS-2021-II212068-AIHub/10%, RS-2021-II211343-GSAI/15%, RS-2022-II220951-LBA/15%, RS-2022-II220953-PICA/15%), NRF (RS-2024-00353991-SPARC/15%, RS-2023-00274280-HEI/10%), KEIT (RS-2024-00423940/10%), and Gwangju Metropolitan City (Artificial intelligence industrial convergence cluster development project/10%) grant funded by the Korean government.

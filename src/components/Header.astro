@@ -16,19 +16,40 @@ const { title, authors, institute, conference, notes, links } = Astro.props as P
 ---
 <header class="flex flex-col gap-10 items-center mb-6">
   <h1>{title}</h1>
-  <div class="flex flex-col gap-6 items-center">
+  {conference && (
+    <h2 class="text-center text-2xl font-bold text-zinc-800 ">
+      {conference}
+    </h2>
+  )}
+  
+  
+  <div class="flex flex-col gap-6 items-center font-regular">
     <Authors authors={authors} />
-    {institute && (
-      <p class="text-center">
-        {institute.map((inst, index) => (
-          <span key={index}>
-            <sup>{inst.symbol}</sup>{inst.name}
-            {index < institute.length - 1 && ', '}
-          </span>
-        ))}
-      </p>
-    )}
-    {conference && <p class="text-center">{conference}</p>}
+    <div class="flex-wrap justify-center gap-8 text-center text-lg text-zinc-800 leading-snug
+">
+      {institute.map((inst, idx) => (
+        <span key={idx}>
+          <sup>{inst.symbol}</sup>{inst.name}
+        </span>
+      ))}
+    </div>
+
+  <!-- 기관 로고를 크게, 숫자를 왼쪽 상단에 오버레이 -->
+  <!-- <div class="flex justify-center gap-4 items-center flex-wrap">
+    {institute.map((inst, idx) => (
+      <div class="relative w-32 h-24 flex justify-center items-center" key={idx}>
+        <div class="absolute top-0 left-0 text-sm text-zinc-600 font-medium">
+          {inst.symbol}
+        </div>
+        <img
+          src={inst.logo}
+          alt={inst.name + ' logo'}
+          class="h-16 w-auto object-contain"
+        />
+      </div>
+    ))}
+  </div> -->
+    
     {notes && <Notes notes={notes} />}
     {links && <Links links={links} />}
   </div>

@@ -4,7 +4,12 @@ type Author = {
   institution?: string;
   notes?: string[];
 }
-
+export interface Link {
+  name: string;
+  url: string;
+  icon?: string;
+  iconComponent?: string; // 이 줄을 추가
+}
 type Link = {
   url: string;
   name: string;
