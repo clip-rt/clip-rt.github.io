@@ -83,7 +83,7 @@ export const components = {pre: CodeBlock}
     { symbol: "1", name: "Seoul National University", logo:"src/assets/logo_snu.png"},
     { symbol: "2", name: "Tommoro Robotics", logo:"src/assets/logo_tommoro.png" },
   ]}
-  conference="Robotics: Science and Systems (RSS), 2025"
+  conference="RSS 2025"
   links={[
     {
       name: "Paper",
@@ -184,7 +184,8 @@ Teaching robots desired skills in real-world environments remains challenging, e
 
 ## Motivation
 
-Recent work has made significant progress toward generalist robotic policies using large-scale demonstration datasets. However, collecting these demonstrations often requires expertise and access to specialized hardware (e.g., teleoperation systems), limiting the accessibility and scalability of robot learning. How can non-experts train robotic policies without relying on specialized expertise or devices for data collection?  
+Recent work has made significant progress toward generalist robotic policies using large-scale robot demonstration data. However, collecting these demonstrations often requires expertise and access to specialized hardware (e.g., teleoperation systems). This barrier severely limits accessibility, restricting the number of participants and environments from which data can be gathered. Consequently, this limited accessibility inherently hinders both the scalability (the volume of data) and the diversity (the range of scenarios and behaviors recorded) of the resulting datasets. How can non-experts train robotic policies without relying on specialized expertise or devices for data collection?
+
 
 **We already have an intuitive and accessible interface for robot learning: natural language**.
 In this work, we explore an approach for training robotic skills solely through natural language. It includes:  
@@ -193,10 +194,10 @@ In this work, we explore an approach for training robotic skills solely through 
   <div class="border-l-4 border-blue-500 bg-zinc-50 p-5 rounded-md shadow-sm">
     <p class="font-bold text-zinc-800 mb-2">TL;DR</p>
     <p class="text-zinc-700">
-      We explore how non-experts can teach robotic skills only through natural language supervision.
+      Robotic data collection through natural language supervision
     </p>
     <p class="text-zinc-700">
-      We propose a VLA model that learns visuomotor policies directly from this supervision.
+      VLA model that learns visuomotor skills directly from natural language 
     </p>
   </div>
 </section>
@@ -306,7 +307,7 @@ While our primary focus is on training real-world robots through language-guided
 
 <section class>
   <div class="box" style="background-color: #f5f5f5; border-left: 4px solid #3273dc; padding: 10px; font-size: 0.5rem; margin-left: 0;">
-      <p>**Generality**: Is CLIP-RT applicable to environments with offline, human-teleoperated demonstration data?</p>
+      <p>**Generality**: Is CLIP-RT applicable to environments with offline, human-teleoperated demonstrations?</p>
       <p>**Performance**: Does CLIP-RT remain effective in a controlled simulation setting?</p>
   </div>
 </section>
