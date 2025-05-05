@@ -17,7 +17,7 @@ const { title, authors, institute, conference, notes, links } = Astro.props as P
 <header class="flex flex-col gap-10 items-center mb-6">
   <h1>{title}</h1>
   {conference && (
-    <h2 class="text-center text-2xl font-bold text-zinc-800 ">
+    <h2 class="text-center text-2xl font-bold text-zinc-800" style="color: #990001;">
       {conference}
     </h2>
   )}
